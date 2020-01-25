@@ -18,7 +18,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
     name                        = "ecs-lb-${var.ecs-cluster-name}"
     image_id                    = "ami-0089b31e09ac3fffc"
     instance_type               = "t2.medium"
-    iam_instance_profile        = "ecsInstanceRole"
+    iam_instance_profile        = "ECSRoleForEC2"
     root_block_device {
       volume_type = "standard"
       volume_size = 20
