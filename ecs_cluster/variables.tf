@@ -15,3 +15,7 @@ variable "capacity" {
 variable "subnets" {
     default = "subnet-8abbfee3"
 }
+
+variable "security_groups" {
+    default = "sg-22358043"
+}
