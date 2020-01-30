@@ -14,7 +14,7 @@ variable "user_data_script" {
   default = <<EOF
 #!/bin/bash
 yum install httpd git curl unzip -y
-systemctl enable httpd
-systemctl start httpd
+sudo systemctl enable httpd
+sudo systemctl start httpd
 EOF
 }
