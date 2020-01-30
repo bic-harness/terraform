@@ -7,7 +7,7 @@ variable "region" {
 }
 
 variable "ami_image" {
-  default = ""
+  default = "ami-0089b31e09ac3fffc"
 }
 
 variable "user_data_script" {
