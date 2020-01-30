@@ -14,6 +14,7 @@ variable "user_data_script" {
   default = <<EOF
 #!/bin/bash
 yum install httpd git curl unzip -y
-aws s3 cp s3://bic-harness/docker_hello_world.zip /home/ec2-user/
+systemctl enable httpd
+systemctl start httpd
 EOF
 }
