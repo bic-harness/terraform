@@ -3,9 +3,9 @@ output "region" {
 }
 
 output "publicdns" {
-    value = web_server.public_dns
+    value = aws_instance.web_server.public_dns
 }
 
 output "publicip" {
-    value = web_server.public_ip
+    value = aws_instance.web_server.public_ip
 }
