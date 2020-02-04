@@ -10,3 +10,17 @@ resource "aws_instance" "web_server" {
     Environment = "Production"
   }
 }
+
+resource "aws_eip" "wb_eip" {
+  instance = aws_instance.web_server.id
+  vpc      = true
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = var.primary_zone_id
+  name    = "www.bicatana.net"
+  type    = "A"
+  ttl     = "300"
+  records = ["${aws_eip.wb_eip.public_ip}"]
+}
+
