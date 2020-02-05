@@ -1,4 +1,4 @@
-resource "aws_instance" "web_server" {
+resource "aws_instance" "java_server" {
   ami                    = var.ami_image
   instance_type          = "t2.micro"
   user_data              = var.user_data_script
@@ -6,13 +6,13 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = ["sg-01c4818eac2729203"]
   
   tags = {
-    Name        = "WebServer"
+    Name        = "JavaServer"
     Environment = "Production"
   }
 }
 
-resource "aws_eip" "wb_eip" {
-  instance = aws_instance.web_server.id
+resource "aws_eip" "jv_eip" {
+  instance = aws_instance.java_server.id
   vpc      = true
 }
 
@@ -21,6 +21,6 @@ resource "aws_route53_record" "www" {
   name    = "www.bicatana.net"
   type    = "A"
   ttl     = "300"
-  records = ["${aws_eip.wb_eip.public_ip}"]
+  records = ["${aws_eip.jv_eip.public_ip}"]
 }
 
