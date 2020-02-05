@@ -6,7 +6,7 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = ["sg-01c4818eac2729203"]
   
   tags = {
-    Name        = "WebServer"
+    Name        = "JavaServer"
     Environment = "Production"
   }
 }
