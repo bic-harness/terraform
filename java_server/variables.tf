@@ -18,5 +18,6 @@ variable "user_data_script" {
   default = <<EOF
 #!/bin/bash
 sudo yum install git curl unzip -y
+sudo sh  /opt/bitnami/tomcat/bin/startup.sh
 EOF
 }
