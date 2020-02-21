@@ -12,7 +12,7 @@ resource "aws_instance" "docker_host" {
 }
 
 resource "aws_eip" "docker_eip" {
-  instance = aws_instance.java_server.id
+  instance = aws_instance.docker_host.id
   vpc      = true
 }
 
