@@ -64,14 +64,14 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   source_arn    = "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.rest_api.id}/*/${aws_api_gateway_method_response.response_method.http_method}${var.path}"
 }
 
-resource "aws_api_gateway_domain_name" "apibicatananet" {
-  domain_name              = "api.bicatana.net"
-  regional_certificate_arn = "arn:aws:acm:eu-west-2:000681679761:certificate/6e87a906-5529-4fa7-b055-782c2fd1840f"
+// resource "aws_api_gateway_domain_name" "apibicatananet" {
+//   domain_name              = "api.bicatana.net"
+//   regional_certificate_arn = "arn:aws:acm:eu-west-2:000681679761:certificate/6e87a906-5529-4fa7-b055-782c2fd1840f"
 
-  endpoint_configuration {
-    types = ["REGIONAL"]
-  }
-}
+//   endpoint_configuration {
+//     types = ["REGIONAL"]
+//   }
+// }
 
 resource "aws_route53_record" "api" {
   zone_id = var.primary_zone_id
