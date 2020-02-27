@@ -77,7 +77,6 @@ resource "aws_route53_record" "api" {
   zone_id = var.primary_zone_id
   name    = "api.bicatana.net"
   type    = "A"
-  ttl     = "300"
   
   alias {
     name                   = aws_api_gateway_domain_name.apibicatananet.regional_domain_name

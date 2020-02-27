@@ -2,9 +2,11 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
+variable "account_id" {}
+
 variable "lambda_name" {}
 
-variable "account_id" {}
+variable "rest_api_name" {}
 
 variable "region" {
     default= "eu-west-2"
