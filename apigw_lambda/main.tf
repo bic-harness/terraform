@@ -83,7 +83,7 @@ resource "aws_route53_record" "api" {
     // zone_id                = aws_api_gateway_domain_name.apibicatananet.regional_zone_id
     name                   = "api.bicatana.net"
     zone_id                = "ZJ5UAJN8Y3Z2Q"
-    evaluate_target_health = true
+    evaluate_target_health = false
   }
 }
 
