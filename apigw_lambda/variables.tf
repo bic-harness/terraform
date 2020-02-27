@@ -4,6 +4,8 @@ variable "secret_key" {}
 
 variable "lambda_name" {}
 
+variable "account_id" {}
+
 variable "region" {
     default= "eu-west-2"
 }
@@ -16,11 +18,6 @@ variable "method" {
 variable "path" {
   description = "The API resource path"
   default ="*"
-}
-
-variable "account_id" {
-  description = "The AWS account ID"
-  default     = ""
 }
 
 variable "primary_zone_id" {
