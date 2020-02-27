@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "request_method" {
 
 # Example: GET /rest => POST lambda
 resource "aws_api_gateway_integration" "request_method_integration" {
-  rest_api_id = var.rest_api_id
+  rest_api_id = aws_api_gateway_rest_api.rest_api.id
   //resource_id = var.resource_id
   resource_id = aws_api_gateway_resource.rest_api_res.id
   http_method = aws_api_gateway_method.request_method.http_method
