@@ -17,7 +17,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   resource "aws_launch_configuration" "ecs-launch-configuration" {
     name                        = "ecs-lb-${var.ecs-cluster-name}"
     image_id                    = "ami-0089b31e09ac3fffc"
-    instance_type               = "t2.medium"
+    instance_type               = "m5.large"
     iam_instance_profile        = "ECSRoleForEC2"
     root_block_device {
       volume_type = "standard"

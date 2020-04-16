@@ -17,5 +17,5 @@ variable "subnets" {
 }
 
 variable "security_groups" {
-    default = ["sg-22358043"]
+    default = ["sg-01c4818eac2729203"]
 }
