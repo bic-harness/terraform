@@ -11,5 +11,5 @@ variable "primary_zone_id" {
 }
 
 variable "ami_image" {
-  default = "ami-0596aab74a1ce3983"
+  default = "ami-0089b31e09ac3fffc"
 }

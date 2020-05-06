@@ -1,7 +1,7 @@
 resource "aws_instance" "docker_host" {
   ami                    = var.ami_image
   instance_type          = "t2.micro"
-  user_data              = var.user_data_script
+  user_data              = data.template_file.user_data.rendered
   key_name               = "bc-harness"
   vpc_security_group_ids = ["sg-01c4818eac2729203"]
   
