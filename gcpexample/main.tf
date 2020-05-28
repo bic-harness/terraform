@@ -1,5 +1,6 @@
 provider "google" {
   project = "agile-tangent-277907"
+  credentials = "~/terraform_gcp.json"
   region  = "europe-west2"
   zone = "europe-west2-c"
 }
@@ -7,6 +8,7 @@ provider "google" {
 terraform {
   backend "gcs" {
     bucket  = "harness-terraform"
+    credentials = "~/terraform_gcp.json"
     prefix  = "terraform/state"
   }
 }
