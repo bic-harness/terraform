@@ -1,6 +1,7 @@
 provider "google" {
   project = "agile-tangent-277907"
   region  = "europe-west2"
+  zone = "europe-west2c"
 }
 
 terraform {
