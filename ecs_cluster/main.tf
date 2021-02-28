@@ -31,3 +31,4 @@ resource "aws_ecs_cluster" "ecs-cluster" {
     associate_public_ip_address = "true"
     key_name                    = "bc-harness"
     user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs-cluster-name}' > /etc/ecs/ecs.config"
+  }
