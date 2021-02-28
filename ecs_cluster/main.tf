@@ -7,7 +7,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 
   resource "aws_autoscaling_group" "ecs-autoscaling-group" {
     name                        = "ecs-asg-${var.ecs-cluster-name}"
-    max_size                    = "4"
+    max_size                    = "3"
     min_size                    = "1"
     desired_capacity            = var.capacity
     vpc_zone_identifier         = var.subnets
@@ -16,7 +16,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   }
   resource "aws_launch_configuration" "ecs-launch-configuration" {
     name                        = "ecs-lb-${var.ecs-cluster-name}"
-    image_id                    = "ami-0089b31e09ac3fffc"
+    image_id                    = "ami-005307409c5f6e76c"
     instance_type               = "m5.large"
     iam_instance_profile        = "ECSRoleForEC2"
     root_block_device {
@@ -30,8 +30,4 @@ resource "aws_ecs_cluster" "ecs-cluster" {
     security_groups             = var.security_groups
     associate_public_ip_address = "true"
     key_name                    = "bc-harness"
-    user_data                   = <<EOF
-                                  #!/bin/bash
-                                  echo ECS_CLUSTER=${var.ecs-cluster-name} >> /etc/ecs/ecs.config
-                                  EOF
-}
+    user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs-cluster-name}' > /etc/ecs/ecs.config"
