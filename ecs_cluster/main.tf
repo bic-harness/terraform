@@ -16,12 +16,12 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   }
   resource "aws_launch_configuration" "ecs-launch-configuration" {
     name                        = "ecs-lb-${var.ecs-cluster-name}"
-    image_id                    = "ami-005307409c5f6e76c"
-    instance_type               = "m5.large"
+    image_id                    = "ami-0e4249602c03f799a"
+    instance_type               = "m5d.large"
     iam_instance_profile        = "ECSRoleForEC2"
     root_block_device {
       volume_type = "standard"
-      volume_size = 20
+      volume_size = 30
       delete_on_termination = true
     }
     lifecycle {
