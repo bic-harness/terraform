@@ -40,7 +40,7 @@ resource "aws_elb" "blue_alb" {
 resource "aws_lb" "blue_lb" {
   load_balancer_type = "application"
   name               = var.blue-alb
-  subnets            = ["subnet-8abbfee3"]
+  subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
 }
 
 resource "aws_lb_listener" "blue_listener" {
@@ -80,7 +80,7 @@ resource "aws_elb" "green_alb" {
 resource "aws_lb" "green_lb" {
   load_balancer_type = "application"
   name               = var.green-alb
-  subnets            = ["subnet-8abbfee3"]
+  subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
 }
 
 resource "aws_lb_target_group" "green_tg" {
