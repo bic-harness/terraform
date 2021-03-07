@@ -94,13 +94,11 @@ resource "aws_lb_listener" "green_listener" {
   load_balancer_arn = aws_lb.green_lb.arn
   port              = "80"
   protocol          = "HTTP"
-/*
+
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.green_tg.arn
-  }
-*/
-  forward {
+    forward {
       target_group = [aws_lb_target_group.green_tg.arn,aws_lb_target_group.blue_tg.arn]
+    }
   }
 }
