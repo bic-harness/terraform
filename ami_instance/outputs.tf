@@ -3,7 +3,7 @@ output "region" {
 }
 
 output "asg_name" {
-    value = var.region
+    value = var.asg-name
 }
 
 output "green_alb" {
@@ -11,9 +11,9 @@ output "green_alb" {
 }
 
 output "blue_alb" {
-    value = var.blue_alb
+    value = var.blue-alb
 }
 
-output "green-elb" {
-    value = var.green-elb
+output "green_alb" {
+    value = var.green-alb
 }

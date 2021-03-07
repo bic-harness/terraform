@@ -9,7 +9,7 @@ resource "aws_launch_configuration" "bg-launch-config" {
 }
 
 resource "aws_autoscaling_group" "asg-config" {
-  name                 = var.asg_name
+  name                 = var.asg-name
   min_size             = 1
   desired_capacity     = 1
   max_size             = 3
@@ -22,7 +22,7 @@ resource "aws_autoscaling_group" "asg-config" {
 }
 
 resource "aws_elb" "application" {
-  name    = var.blue_alb
+  name    = var.blue-alb
   subnets = ["subnet-8abbfee3"]
  
   listener {
@@ -61,7 +61,7 @@ resource "aws_route53_record" "application" {
 }
  
 resource "aws_elb" "application_green" {
-  name    = var.green-elb
+  name    = var.green-alb
   subnets = ["subnet-8abbfee3"]
  
   listener {

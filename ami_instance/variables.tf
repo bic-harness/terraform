@@ -14,10 +14,18 @@ variable "ami_image" {
   default = "ami-0a0cb6c7bcb2e4c51"
 }
 
-variable "blue-elb" {
-  defualt = "blue-elb"
+variable "blue-alb" {
+  defualt = "blue-alb"
 }
 
-variable "green-elb" {
-  default = "green-elb"
+variable "green-alb" {
+  default = "green-alb"
+}
+
+variable "asg-name" {
+  default = "asg-name"
+}
+
+variable "launch_config_name" {
+  default = "lc-name"
 }
