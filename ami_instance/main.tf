@@ -22,6 +22,7 @@ resource "aws_autoscaling_group" "asg-config" {
 }
 
 //////////// BLUE SETUP
+/*
 resource "aws_elb" "blue_alb" {
   name    = var.blue-alb
   subnets = ["subnet-8abbfee3"]
@@ -33,7 +34,13 @@ resource "aws_elb" "blue_alb" {
     target              = "HTTP:80/"
     interval            = 30
   }
- 
+}
+*/
+
+resource "aws_lb" "blue_lb" {
+  load_balancer_type = "gateway"
+  name               = var.blue-alb
+  subnets            = ["subnet-8abbfee3"]
 }
 
 resource "aws_lb_listener" "blue_listener" {
@@ -55,6 +62,7 @@ resource "aws_lb_target_group" "blue_tg" {
 }
  
 //////////// GREEN SETUP
+/*
 resource "aws_elb" "green_alb" {
   name    = var.green-alb
   subnets = ["subnet-8abbfee3"]
@@ -66,6 +74,13 @@ resource "aws_elb" "green_alb" {
     target              = "HTTP:80/"
     interval            = 30
   }
+}
+*/
+
+resource "aws_lb" "green_lb" {
+  load_balancer_type = "gateway"
+  name               = var.green-alb
+  subnets            = ["subnet-8abbfee3"]
 }
 
 resource "aws_lb_target_group" "green_tg" {
