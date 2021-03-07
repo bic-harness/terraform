@@ -53,24 +53,7 @@ resource "aws_lb_target_group" "blue_tg" {
   port     = 8080
   protocol = "HTTP"
 }
- 
-resource "aws_route53_record" "application" {
-  zone_id = var.primary_zone_id
-  name    = "application.bicatana.net"
-  type    = "A"
- 
-  alias {
-    name                   = aws_elb.application.dns_name
-    zone_id                = aws_elb.application.zone_id
-    evaluate_target_health = true
-  }
- 
-  weighted_routing_policy {
-    weight = 10
-  }
- 
-  set_identifier = "blue"
-}
+
  
 resource "aws_elb" "application_green" {
   name    = var.green-alb
@@ -90,22 +73,4 @@ resource "aws_elb" "application_green" {
     target              = "HTTP:80/"
     interval            = 30
   }
-}
- 
-resource "aws_route53_record" "application_green" {
-  zone_id = var.primary_zone_id
-  name    = "application.bicatana.net"
-  type    = "A"
- 
-  alias {
-    name                   = aws_elb.application_green.0.dns_name
-    zone_id                = aws_elb.application_green.0.zone_id
-    evaluate_target_health = true
-  }
- 
-  weighted_routing_policy {
-    weight = 0
-  }
- 
-  set_identifier = "green"
 }
