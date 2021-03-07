@@ -13,3 +13,11 @@ variable "primary_zone_id" {
 variable "ami_image" {
   default = "ami-0a0cb6c7bcb2e4c51"
 }
+
+variable "blue-elb" {
+  defualt = "blue-elb"
+}
+
+variable "green-elb" {
+  default = "green-elb"
+}

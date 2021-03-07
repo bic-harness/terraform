@@ -2,10 +2,18 @@ output "region" {
     value = var.region
 }
 
-output "publicdns" {
-    value = aws_instance.docker_host.public_dns
+output "asg_name" {
+    value = var.region
 }
 
-output "publicip" {
-    value = aws_instance.docker_host.public_ip
+output "green_alb" {
+    value = var.region
+}
+
+output "blue_alb" {
+    value = var.blue_alb
+}
+
+output "green-elb" {
+    value = var.green-elb
 }

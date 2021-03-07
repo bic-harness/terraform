@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "bg-launch-config" {
-  name_prefix = "bg-"
+  name                        = var.launch_config_name
   image_id                    = var.ami_image
   instance_type               = "t2.micro"
   security_groups             = ["sg-01c4818eac2729203"]
@@ -9,7 +9,7 @@ resource "aws_launch_configuration" "bg-launch-config" {
 }
 
 resource "aws_autoscaling_group" "asg-config" {
-  name                 = aws_launch_configuration.worker.name-asg
+  name                 = var.asg_name
   min_size             = 1
   desired_capacity     = 1
   max_size             = 3
@@ -22,7 +22,7 @@ resource "aws_autoscaling_group" "asg-config" {
 }
 
 resource "aws_elb" "application" {
-  name    = "blue-elb"
+  name    = var.blue_alb
   subnets = ["subnet-8abbfee3"]
  
   listener {
@@ -43,8 +43,8 @@ resource "aws_elb" "application" {
 }
  
 resource "aws_route53_record" "application" {
-  zone_id = aws_route53_zone.private.zone_id
-  name    = "application.${aws_route53_zone.private.name}"
+  zone_id = var.primary_zone_id
+  name    = "application.bicatana.net"
   type    = "A"
  
   alias {
@@ -61,7 +61,7 @@ resource "aws_route53_record" "application" {
 }
  
 resource "aws_elb" "application_green" {
-  name    = "${var.prefix}-green-elb"
+  name    = var.green-elb
   subnets = ["subnet-8abbfee3"]
  
   listener {
@@ -80,15 +80,11 @@ resource "aws_elb" "application_green" {
   }
  
   instances = aws_instance.application_green.*.id
- 
-  tags = {
-    Has_Toggle = var.enable_green_application
-  }
 }
  
 resource "aws_route53_record" "application_green" {
-  zone_id = aws_route53_zone.private.zone_id
-  name    = "application.${aws_route53_zone.private.name}"
+  zone_id = var.primary_zone_id
+  name    = "application.bicatana.net"
   type    = "A"
  
   alias {
