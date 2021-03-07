@@ -15,9 +15,9 @@ output "green_alb" {
 }
 
 output "green_tg" {
-    value = var.green-tg
+    value = aws_lb_target_group.green_tg.arn
 }
 
 output "blue_tg" {
-    value = var.blue-tg
+    value = aws_lb_target_group.blue_tg.arn
 }
