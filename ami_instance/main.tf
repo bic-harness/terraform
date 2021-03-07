@@ -26,13 +26,6 @@ resource "aws_elb" "blue_alb" {
   name    = var.blue-alb
   subnets = ["subnet-8abbfee3"]
  
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
- 
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -44,7 +37,7 @@ resource "aws_elb" "blue_alb" {
 }
 
 resource "aws_lb_listener" "blue_listener" {
-  load_balancer_arn = aws_elb.blue_alb.id
+  load_balancer_arn = aws_elb.blue_alb.arn
   port              = "8080"
   protocol          = "HTTP"
 
@@ -65,14 +58,7 @@ resource "aws_lb_target_group" "blue_tg" {
 resource "aws_elb" "green_alb" {
   name    = var.green-alb
   subnets = ["subnet-8abbfee3"]
- 
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
- 
+
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -90,7 +76,7 @@ resource "aws_lb_target_group" "green_tg" {
 }
 
 resource "aws_lb_listener" "green_listener" {
-  load_balancer_arn = aws_elb.green_alb.id
+  load_balancer_arn = aws_elb.green_alb.arn
   port              = "80"
   protocol          = "HTTP"
 
