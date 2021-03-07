@@ -17,3 +17,11 @@ output "blue_alb" {
 output "green_alb" {
     value = var.green-alb
 }
+
+output "green_tg" {
+    value = var.green-tg
+}
+
+output "blue_tg" {
+    value = var.blue-tg
+}

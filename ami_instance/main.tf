@@ -41,6 +41,18 @@ resource "aws_elb" "application" {
   }
  
 }
+
+resource "aws_lb_target_group" "green_tg" {
+  name     = var.green-tg
+  port     = 80
+  protocol = "HTTP"
+}
+
+resource "aws_lb_target_group" "blue_tg" {
+  name     = var.blue-tg
+  port     = 8080
+  protocol = "HTTP"
+}
  
 resource "aws_route53_record" "application" {
   zone_id = var.primary_zone_id

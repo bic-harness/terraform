@@ -29,3 +29,11 @@ variable "asg-name" {
 variable "launch_config_name" {
   default = "lc-name"
 }
+
+variable "green-tg" {
+  default = "green-tg"
+}
+
+variable "blue-tg" {
+  default = "blue-tg"
+}
