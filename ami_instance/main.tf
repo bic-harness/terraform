@@ -36,7 +36,7 @@ resource "aws_elb" "blue_alb" {
   }
 }
 */
-
+/*
 resource "aws_lb" "blue_lb" {
   load_balancer_type = "application"
   name               = var.blue-alb
@@ -53,7 +53,7 @@ resource "aws_lb_listener" "blue_listener" {
     target_group_arn = aws_lb_target_group.blue_tg.arn
   }
 }
-
+*/
 resource "aws_lb_target_group" "blue_tg" {
   name     = var.blue-tg
   port     = 8080

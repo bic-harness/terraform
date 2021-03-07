@@ -17,11 +17,11 @@ output "green_alb" {
 output "green_tg" {
     value = aws_lb_target_group.green_tg.arn
 }
-
+/*
 output "blue_tg" {
     value = aws_lb_target_group.blue_tg.arn
 }
-
+*/
 output "green_listener" {
     value = aws_lb_listener.green_listener.arn
 }
