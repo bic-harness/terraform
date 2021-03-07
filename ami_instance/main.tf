@@ -21,7 +21,8 @@ resource "aws_autoscaling_group" "asg-config" {
   }
 }
 
-resource "aws_elb" "application" {
+//////////// BLUE SETUP
+resource "aws_elb" "blue_alb" {
   name    = var.blue-alb
   subnets = ["subnet-8abbfee3"]
  
@@ -42,11 +43,15 @@ resource "aws_elb" "application" {
  
 }
 
-resource "aws_lb_target_group" "green_tg" {
-  name     = var.green-tg
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "vpc-d7fa89bf"
+resource "aws_lb_listener" "blue_listener" {
+  load_balancer_arn = aws_elb.blue_alb.arn
+  port              = "8080"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.blue_tg.arn
+  }
 }
 
 resource "aws_lb_target_group" "blue_tg" {
@@ -55,9 +60,9 @@ resource "aws_lb_target_group" "blue_tg" {
   protocol = "HTTP"
   vpc_id   = "vpc-d7fa89bf"
 }
-
  
-resource "aws_elb" "application_green" {
+//////////// GREEN SETUP
+resource "aws_elb" "green_alb" {
   name    = var.green-alb
   subnets = ["subnet-8abbfee3"]
  
@@ -74,5 +79,23 @@ resource "aws_elb" "application_green" {
     timeout             = 3
     target              = "HTTP:80/"
     interval            = 30
+  }
+}
+
+resource "aws_lb_target_group" "green_tg" {
+  name     = var.green-tg
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = "vpc-d7fa89bf"
+}
+
+resource "aws_lb_listener" "green_listener" {
+  load_balancer_arn = aws_elb.green_alb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.green_tg.arn
   }
 }
