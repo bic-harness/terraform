@@ -46,12 +46,14 @@ resource "aws_lb_target_group" "green_tg" {
   name     = var.green-tg
   port     = 80
   protocol = "HTTP"
+  vpc_id   = "vpc-d7fa89bf"
 }
 
 resource "aws_lb_target_group" "blue_tg" {
   name     = var.blue-tg
   port     = 8080
   protocol = "HTTP"
+  vpc_id   = "vpc-d7fa89bf"
 }
 
  
