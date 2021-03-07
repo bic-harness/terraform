@@ -44,7 +44,7 @@ resource "aws_elb" "blue_alb" {
 }
 
 resource "aws_lb_listener" "blue_listener" {
-  load_balancer_arn = aws_elb.blue_alb.arn
+  load_balancer_arn = aws_elb.blue_alb.id
   port              = "8080"
   protocol          = "HTTP"
 
@@ -90,7 +90,7 @@ resource "aws_lb_target_group" "green_tg" {
 }
 
 resource "aws_lb_listener" "green_listener" {
-  load_balancer_arn = aws_elb.green_alb.arn
+  load_balancer_arn = aws_elb.green_alb.id
   port              = "80"
   protocol          = "HTTP"
 
