@@ -15,7 +15,7 @@ variable "ami_image" {
 }
 
 variable "blue-alb" {
-  defualt = "blue-alb"
+  default = "blue-alb"
 }
 
 variable "green-alb" {
