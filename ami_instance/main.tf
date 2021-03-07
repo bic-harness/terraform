@@ -90,8 +90,6 @@ resource "aws_elb" "application_green" {
     target              = "HTTP:80/"
     interval            = 30
   }
- 
-  instances = aws_instance.application_green.*.id
 }
  
 resource "aws_route53_record" "application_green" {
