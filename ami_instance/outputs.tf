@@ -35,3 +35,7 @@ output "blue_tg_2" {
 output "green_listener" {
     value = aws_lb_listener.green_listener.arn
 }
+
+output "blue_listener" {
+    value = aws_lb_listener.blue_listener.arn
+}
