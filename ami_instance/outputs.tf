@@ -19,6 +19,10 @@ output "green_listener_arn" {
     value = aws_lb_listener.green_listener.arn
 }
 
+output "green_listener_arn_rule" {
+    value = aws_lb_listener_rule.green_listener_rule.arn
+}
+
 output "green_alb" {
 //    value = var.green-alb
     value = aws_lb.green_lb.arn
