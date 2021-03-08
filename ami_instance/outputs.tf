@@ -11,7 +11,7 @@ output "asg_arn" {
 }
 
 output "green_listener_name" {
-    value = var.green-listener
+    value = aws_lb_listener.green_listener.id
 }
 
 
