@@ -104,6 +104,11 @@ resource "aws_lb_target_group" "green_tg_1" {
   protocol      = "HTTP"
   target_type   = "instance"
   vpc_id        = "vpc-d7fa89bf"
+  stickiness {
+      type = "lb_cookie"
+      enabled = true
+      cookie_duration = 1
+  }
 }
 
 resource "aws_lb_target_group" "green_tg_2" {
@@ -112,6 +117,11 @@ resource "aws_lb_target_group" "green_tg_2" {
   protocol      = "HTTP"
   target_type   = "instance"
   vpc_id        = "vpc-d7fa89bf"
+  stickiness {
+      type = "lb_cookie"
+      enabled = true
+      cookie_duration = 1
+  }
 }
 
 resource "aws_lb_listener" "green_listener" {
