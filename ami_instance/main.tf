@@ -58,7 +58,7 @@ resource "aws_lb_listener" "blue_listener" {
             arn = aws_lb_target_group.blue_tg_2.arn
         }
     }
-
+  }
 }
 
 resource "aws_lb_target_group" "blue_tg_1" {
