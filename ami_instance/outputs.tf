@@ -6,6 +6,10 @@ output "asg_name" {
     value = var.asg-name
 }
 
+output "asg_arn" {
+    value = aws_autoscaling_group.asg-config.arn
+}
+
 output "blue_alb" {
 //    value = var.blue-alb
     value = aws_lb.blue_lb.arn
