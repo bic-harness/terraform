@@ -34,6 +34,10 @@ variable "green-tg-2" {
   default = "green-tg-2"
 }
 
+variable "green-listener" {
+  default = "green-listener"
+}
+
 /*
 variable "blue-alb" {
   default = "blue-alb"

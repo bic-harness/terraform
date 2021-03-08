@@ -10,7 +10,12 @@ output "asg_arn" {
     value = aws_autoscaling_group.asg-config.arn
 }
 
-output "green_listener" {
+output "green_listener_name" {
+    value = var.green-listener
+}
+
+
+output "green_listener_arn" {
     value = aws_lb_listener.green_listener.arn
 }
 

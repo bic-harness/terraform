@@ -71,6 +71,7 @@ resource "aws_lb_target_group" "green_tg_2" {
 }
 
 resource "aws_lb_listener" "green_listener" {
+  name = var.green-listener
   load_balancer_arn = aws_lb.green_lb.arn
 
   port              = "80"
@@ -110,7 +111,6 @@ resource "aws_lb_listener_rule" "green_listener_rule" {
         arn    = aws_lb_target_group.green_tg_2.arn
         weight = 0
       }
-
       stickiness {
         enabled  = true
         duration = 600
