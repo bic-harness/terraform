@@ -133,6 +133,10 @@ resource "aws_lb_listener" "green_listener" {
   default_action {
     type             = "forward"
     forward {
+        stickiness {
+            enabled = true
+            durantion = 1
+        }
         target_group {
           arn = aws_lb_target_group.green_tg_1.arn
           weight = 100
