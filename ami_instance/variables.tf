@@ -14,10 +14,6 @@ variable "ami_image" {
   default = "ami-0b55aac867940e735"
 }
 
-variable "blue-alb" {
-  default = "blue-alb"
-}
-
 variable "green-alb" {
   default = "green-alb"
 }
@@ -38,6 +34,11 @@ variable "green-tg-2" {
   default = "green-tg-2"
 }
 
+/*
+variable "blue-alb" {
+  default = "blue-alb"
+}
+
 variable "blue-tg-1" {
   default = "blue-tg-1"
 }
@@ -45,3 +46,4 @@ variable "blue-tg-1" {
 variable "blue-tg-2" {
   default = "blue-tg-2"
 }
+*/

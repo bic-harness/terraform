@@ -10,9 +10,8 @@ output "asg_arn" {
     value = aws_autoscaling_group.asg-config.arn
 }
 
-output "blue_alb" {
-//    value = var.blue-alb
-    value = aws_lb.blue_lb.arn
+output "green_listener" {
+    value = aws_lb_listener.green_listener.arn
 }
 
 output "green_alb" {
@@ -20,12 +19,25 @@ output "green_alb" {
     value = aws_lb.green_lb.arn
 }
 
-output "green_tg_1" {
+output "green_tg_1_name" {
+    value = var.green-tg-1
+}
+
+output "green_tg_1_arn" {
     value = aws_lb_target_group.green_tg_1.arn
 }
 
-output "green_tg_2" {
+output "green_tg_2_name" {
+    value = var.green-tg-1
+}
+
+output "green_tg_2_arn" {
     value = aws_lb_target_group.green_tg_2.arn
+}
+/*
+output "blue_alb" {
+//    value = var.blue-alb
+    value = aws_lb.blue_lb.arn
 }
 
 output "blue_tg_1" {
@@ -36,10 +48,7 @@ output "blue_tg_2" {
     value = aws_lb_target_group.blue_tg_2.arn
 }
 
-output "green_listener" {
-    value = aws_lb_listener.green_listener.arn
-}
-
 output "blue_listener" {
     value = aws_lb_listener.blue_listener.arn
 }
+*/

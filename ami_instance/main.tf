@@ -21,62 +21,8 @@ resource "aws_autoscaling_group" "asg-config" {
   }
 }
 
-//////////// BLUE SETUP
-/*
-resource "aws_elb" "blue_alb" {
-  name    = var.blue-alb
-  subnets = ["subnet-8abbfee3"]
- 
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:80/"
-    interval            = 30
-  }
-}
-*/
 
-resource "aws_lb" "blue_lb" {
-  load_balancer_type = "application"
-  name               = var.blue-alb
-  subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
-}
-
-resource "aws_lb_listener" "blue_listener" {
-  load_balancer_arn = aws_lb.blue_lb.arn
-  port              = "8080"
-  protocol          = "HTTP"
-
-  default_action {
-    type             = "forward"
-    forward {
-        target_group {
-          arn = aws_lb_target_group.blue_tg_1.arn
-        }
-        target_group {
-            arn = aws_lb_target_group.blue_tg_2.arn
-        }
-    }
-  }
-}
-
-resource "aws_lb_target_group" "blue_tg_1" {
-  name          = var.blue-tg-1
-  port          = 8080
-  protocol      = "HTTP"
-  target_type   = "instance"
-  vpc_id        = "vpc-d7fa89bf"
-}
-
-resource "aws_lb_target_group" "blue_tg_2" {
-  name          = var.blue-tg-2
-  port          = 8080
-  protocol      = "HTTP"
-  target_type   = "instance"
-  vpc_id        = "vpc-d7fa89bf"
-}
-//////////// GREEN SETUP
+//////////// BLUE/GREEN SETUP
 /*
 resource "aws_elb" "green_alb" {
   name    = var.green-alb
@@ -178,3 +124,61 @@ resource "aws_lb_listener_rule" "green_listener_rule" {
     }
   }
 }
+
+
+//////////// SAMPLE SETUP
+/*
+resource "aws_elb" "blue_alb" {
+  name    = var.blue-alb
+  subnets = ["subnet-8abbfee3"]
+ 
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 30
+  }
+}
+*/
+/*
+resource "aws_lb" "blue_lb" {
+  load_balancer_type = "application"
+  name               = var.blue-alb
+  subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
+}
+
+resource "aws_lb_listener" "blue_listener" {
+  load_balancer_arn = aws_lb.blue_lb.arn
+  port              = "8080"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    forward {
+        target_group {
+          arn = aws_lb_target_group.blue_tg_1.arn
+        }
+        target_group {
+            arn = aws_lb_target_group.blue_tg_2.arn
+        }
+    }
+  }
+}
+
+resource "aws_lb_target_group" "blue_tg_1" {
+  name          = var.blue-tg-1
+  port          = 8080
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
+}
+
+resource "aws_lb_target_group" "blue_tg_2" {
+  name          = var.blue-tg-2
+  port          = 8080
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
+}
+*/
