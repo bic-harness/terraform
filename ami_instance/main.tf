@@ -126,7 +126,7 @@ resource "aws_lb_target_group" "green_tg_2" {
 
 resource "aws_lb_listener" "green_listener" {
   load_balancer_arn = aws_lb.green_lb.arn
-  depends_on = aws_lb_listener_rule.green_listener_rule
+  depends_on = aws_lb_listener_rule.green_listener_rule.name
   port              = "80"
   protocol          = "HTTP"
 
