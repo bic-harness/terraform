@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "bg-launch-config" {
   name                        = var.launch_config_name
   image_id                    = var.ami_image
-  instance_type               = "t2.micro"
+  instance_type               = "t4g.micro"
   security_groups             = ["sg-01c4818eac2729203"]
   lifecycle {
     create_before_destroy = true
