@@ -8,12 +8,12 @@ output "asg_name" {
 
 output "blue_alb" {
 //    value = var.blue-alb
-    value = aws_lb.blue-lb.arn
+    value = aws_lb.blue_lb.arn
 }
 
 output "green_alb" {
 //    value = var.green-alb
-    value = aws_lb.green-lb.arn
+    value = aws_lb.green_lb.arn
 }
 
 output "green_tg_1" {
