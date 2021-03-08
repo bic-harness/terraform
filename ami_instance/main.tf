@@ -143,3 +143,33 @@ resource "aws_lb_listener" "green_listener" {
     }
   }
 }
+
+resource "aws_lb_listener_rule" "green_listener_rule" {
+  listener_arn = aws_lb_listener.green_listener.arn
+
+  action {
+    type = "forward"
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.green_tg_1.arn
+        weight = 100
+      }
+
+      target_group {
+        arn    = aws_lb_target_group.green_tg_2.arn
+        weight = 0
+      }
+
+      stickiness {
+        enabled  = true
+        duration = 600
+      }
+    }
+  }
+
+  condition {
+    host_header {
+      values = ["*.*.*"]
+    }
+  }
+}
