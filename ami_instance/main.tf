@@ -66,7 +66,7 @@ resource "aws_lb_target_group" "green_tg_2" {
   stickiness {
       type = "lb_cookie"
       enabled = true
-      cookie_duration = 1
+      cookie_duration = 600
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_lb_listener" "green_listener" {
     forward {
         stickiness {
             enabled = true
-            duration = 1
+            duration = 600
         }
         target_group {
           arn = aws_lb_target_group.green_tg_1.arn
