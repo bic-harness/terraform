@@ -11,7 +11,7 @@ variable "primary_zone_id" {
 }
 
 variable "ami_image" {
-  default = "ami-0a0cb6c7bcb2e4c51"
+  default = "ami-0b55aac867940e735"
 }
 
 variable "blue-alb" {
