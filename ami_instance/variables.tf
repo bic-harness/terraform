@@ -30,10 +30,18 @@ variable "launch_config_name" {
   default = "lc-name"
 }
 
-variable "green-tg" {
-  default = "green-tg"
+variable "green-tg-1" {
+  default = "green-tg-1"
 }
 
-variable "blue-tg" {
-  default = "blue-tg"
+variable "green-tg-2" {
+  default = "green-tg-2"
+}
+
+variable "blue-tg-1" {
+  default = "blue-tg-1"
+}
+
+variable "blue-tg-2" {
+  default = "blue-tg-2"
 }

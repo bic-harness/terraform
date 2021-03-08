@@ -36,7 +36,7 @@ resource "aws_elb" "blue_alb" {
   }
 }
 */
-/*
+
 resource "aws_lb" "blue_lb" {
   load_balancer_type = "application"
   name               = var.blue-alb
@@ -50,17 +50,32 @@ resource "aws_lb_listener" "blue_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.blue_tg.arn
-  }
+    forward {
+        target_group {
+          arn = aws_lb_target_group.blue_tg_1.arn
+        }
+        target_group {
+            arn = aws_lb_target_group.blue_tg_2.arn
+        }
+    }
+
 }
-*/
-resource "aws_lb_target_group" "blue_tg" {
-  name     = var.blue-tg
-  port     = 8080
-  protocol = "HTTP"
-  vpc_id   = "vpc-d7fa89bf"
+
+resource "aws_lb_target_group" "blue_tg_1" {
+  name          = var.blue-tg-1
+  port          = 8080
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
 }
- 
+
+resource "aws_lb_target_group" "blue_tg_2" {
+  name          = var.blue-tg-2
+  port          = 8080
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
+}
 //////////// GREEN SETUP
 /*
 resource "aws_elb" "green_alb" {
@@ -83,11 +98,20 @@ resource "aws_lb" "green_lb" {
   subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
 }
 
-resource "aws_lb_target_group" "green_tg" {
-  name     = var.green-tg
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "vpc-d7fa89bf"
+resource "aws_lb_target_group" "green_tg_1" {
+  name          = var.green-tg-1
+  port          = 80
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
+}
+
+resource "aws_lb_target_group" "green_tg_2" {
+  name          = var.green-tg-2
+  port          = 80
+  protocol      = "HTTP"
+  target_type   = "instance"
+  vpc_id        = "vpc-d7fa89bf"
 }
 
 resource "aws_lb_listener" "green_listener" {
@@ -99,10 +123,10 @@ resource "aws_lb_listener" "green_listener" {
     type             = "forward"
     forward {
         target_group {
-          arn = aws_lb_target_group.green_tg.arn
+          arn = aws_lb_target_group.green_tg_1.arn
         }
         target_group {
-            arn = aws_lb_target_group.blue_tg.arn
+            arn = aws_lb_target_group.green_tg_2.arn
         }
     }
   }
