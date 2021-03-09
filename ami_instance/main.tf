@@ -10,9 +10,9 @@ resource "aws_launch_configuration" "bg-launch-config" {
 
 resource "aws_autoscaling_group" "asg-config" {
   name                 = var.asg-name
-  min_size             = 1
-  desired_capacity     = 1
-  max_size             = 3
+  min_size             = 6
+  desired_capacity     = 6
+  max_size             = 10
   health_check_type    = "EC2"
   launch_configuration = aws_launch_configuration.bg-launch-config.name
   vpc_zone_identifier  = ["subnet-8abbfee3"]
@@ -20,23 +20,6 @@ resource "aws_autoscaling_group" "asg-config" {
     create_before_destroy = true
   }
 }
-
-
-//////////// BLUE/GREEN SETUP
-/*
-resource "aws_elb" "green_alb" {
-  name    = var.green-alb
-  subnets = ["subnet-8abbfee3"]
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:80/"
-    interval            = 30
-  }
-}
-*/
 
 resource "aws_lb" "green_lb" {
   load_balancer_type = "application"
