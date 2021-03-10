@@ -10,9 +10,9 @@ resource "aws_launch_configuration" "bg-launch-config" {
 
 resource "aws_autoscaling_group" "asg-config" {
   name                 = var.asg-name
-  min_size             = 6
-  desired_capacity     = 6
-  max_size             = 10
+  min_size             = 1
+  desired_capacity     = 1
+  max_size             = 3
   health_check_type    = "EC2"
   launch_configuration = aws_launch_configuration.bg-launch-config.name
   vpc_zone_identifier  = ["subnet-8abbfee3"]
