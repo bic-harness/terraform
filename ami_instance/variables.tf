@@ -2,6 +2,18 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
+variable "green-alb" {}
+
+variable "asg-name" {}
+
+variable "launch_config_name" {}
+
+variable "green-tg-1" {}
+
+variable "green-tg-2" {}
+
+variable "green-listener" {}
+
 variable "region" {
     default= "eu-west-2"
 }
@@ -12,30 +24,6 @@ variable "primary_zone_id" {
 
 variable "ami_image" {
   default = "ami-0b55aac867940e735"
-}
-
-variable "green-alb" {
-  default = "green-alb"
-}
-
-variable "asg-name" {
-  default = "asg-name"
-}
-
-variable "launch_config_name" {
-  default = "lc-name"
-}
-
-variable "green-tg-1" {
-  default = "green-tg-1"
-}
-
-variable "green-tg-2" {
-  default = "green-tg-2"
-}
-
-variable "green-listener" {
-  default = "green-listener"
 }
 
 /*
