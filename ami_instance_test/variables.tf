@@ -2,17 +2,29 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
-variable "green-alb" {}
+variable "green-alb" {
+  default = "alb-2"
+}
 
-variable "asg-name" {}
+variable "asg-name" {
+  defualt = "asg-2"
+}
 
-variable "launch_config_name" {}
+variable "launch_config_name" {
+  default = "lc-2"
+}
 
-variable "green-tg-1" {}
+variable "green-tg-1" {
+  default = "tg-2-1"
+}
 
-variable "green-tg-2" {}
+variable "green-tg-2" {
+  default = "tg-2-2"
+}
 
-variable "green-listener" {}
+variable "green-listener" {
+  default = "listener-2"
+}
 
 variable "region" {
     default= "eu-west-2"
