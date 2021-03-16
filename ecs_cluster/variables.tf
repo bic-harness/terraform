@@ -19,3 +19,19 @@ variable "subnets" {
 variable "security_groups" {
     default = ["sg-01c4818eac2729203"]
 }
+
+variable "green-alb" {
+  default = "alb-ecs"
+}
+
+variable "green-tg-1" {
+  default = "tg-ecs-1"
+}
+
+variable "green-tg-2" {
+  default = "tg-ecs-2"
+}
+
+variable "green-listener" {
+  default = "listener-ecs"
+}
