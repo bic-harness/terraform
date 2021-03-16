@@ -7,7 +7,7 @@ variable "green-alb" {
 }
 
 variable "asg-name" {
-  defualt = "asg-1"
+  default = "asg-1"
 }
 
 variable "launch_config_name" {
@@ -27,7 +27,7 @@ variable "green-listener" {
 }
 
 variable "region" {
-    default= "eu-west-2"
+  default = "eu-west-2"
 }
 
 variable "primary_zone_id" {

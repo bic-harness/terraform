@@ -7,7 +7,7 @@ variable "green-alb" {
 }
 
 variable "asg-name" {
-  defualt = "asg-2"
+  default = "asg-2"
 }
 
 variable "launch_config_name" {
