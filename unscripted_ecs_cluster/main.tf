@@ -1,22 +1,21 @@
 
-
 resource "aws_ecs_cluster" "ecs-cluster" {
     name = var.ecs-cluster-name
 
 }
 
-resource "aws_lb" "green_lb" {
+resource "aws_lb" "main_lb" {
   load_balancer_type = "application"
-  name               = var.green-alb
-  subnets            = ["subnet-8abbfee3","subnet-d7b2659b"]
+  name               = "${var.environment}ALB"
+  subnets            = data.selected_subnets.ids
 }
 
-resource "aws_lb_target_group" "green_tg_1" {
-  name          = var.green-tg-1
+resource "aws_lb_target_group" "main_tg" {
+  name          = "${var.environment}ALB-tg"
   port          = 80
   protocol      = "HTTP"
   target_type   = "instance"
-  vpc_id        = "vpc-d7fa89bf"
+  vpc_id        = data.selected_vpc.id
   stickiness {
       type = "lb_cookie"
       enabled = true
@@ -24,21 +23,8 @@ resource "aws_lb_target_group" "green_tg_1" {
   }
 }
 
-resource "aws_lb_target_group" "green_tg_2" {
-  name          = var.green-tg-2
-  port          = 80
-  protocol      = "HTTP"
-  target_type   = "instance"
-  vpc_id        = "vpc-d7fa89bf"
-  stickiness {
-      type = "lb_cookie"
-      enabled = true
-      cookie_duration = 1
-  }
-}
-
-resource "aws_lb_listener" "green_listener" {
-  load_balancer_arn = aws_lb.green_lb.arn
+resource "aws_lb_listener" "main_listener" {
+  load_balancer_arn = aws_lb.main_lb.arn
 
   port              = "80"
   protocol          = "HTTP"
@@ -51,31 +37,22 @@ resource "aws_lb_listener" "green_listener" {
             duration = 1
         }
         target_group {
-          arn = aws_lb_target_group.green_tg_1.arn
+          arn = aws_lb_target_group.main_tg.arn
           weight = 100
-        }
-        target_group {
-            arn = aws_lb_target_group.green_tg_2.arn
-            weight = 0
         }
     }
   }
 }
 
-resource "aws_lb_listener_rule" "green_listener_rule" {
-  listener_arn = aws_lb_listener.green_listener.arn
+resource "aws_lb_listener_rule" "main_listener_rule" {
+  listener_arn = aws_lb_listener.main_listener.arn
 
   action {
     type = "forward"
     forward {
       target_group {
-        arn    = aws_lb_target_group.green_tg_1.arn
+        arn    = aws_lb_target_group.main_tg.arn
         weight = 100
-      }
-
-      target_group {
-        arn    = aws_lb_target_group.green_tg_2.arn
-        weight = 0
       }
       stickiness {
         enabled  = true
