@@ -8,8 +8,6 @@ variable "region" {
     default= "eu-west-2"
 }
 
-variable "ecs-cluster-name" {}
-
 variable "security_groups" {
     default = ["sg-01c4818eac2729203"]
 }
