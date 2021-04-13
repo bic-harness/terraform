@@ -6,7 +6,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 resource "aws_lb" "main_lb" {
   load_balancer_type = "application"
   name               = "${var.environment}ALB"
-  subnets            = data.selected_subnets.ids
+  subnets            = data.aws_subnet_ids.selected_subnets.ids
 }
 
 resource "aws_lb_target_group" "main_tg" {
@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "main_tg" {
   port          = 80
   protocol      = "HTTP"
   target_type   = "instance"
-  vpc_id        = data.selected_vpc.id
+  vpc_id        = data.aws_vpc.selected._vpc.id
   stickiness {
       type = "lb_cookie"
       enabled = true
