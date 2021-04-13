@@ -54,7 +54,6 @@ resource "aws_lb_listener_rule" "main_listener_rule" {
     enabled  = true
     duration = 1
   }
-}
 
   condition {
     host_header {
