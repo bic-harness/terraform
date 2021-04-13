@@ -9,7 +9,7 @@ data "aws_subnet_ids" "selected_subnets" {
 
   vpc_id = data.aws_vpc.selected_vpc.id
   filter {
-    name   = "tag:Name"
-    values = ["${var.environment}Subnet"]
+    name   = "tag:Environment"
+    values = ["${var.environment}"]
   }
 }
