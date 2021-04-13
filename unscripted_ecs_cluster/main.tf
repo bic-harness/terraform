@@ -50,10 +50,6 @@ resource "aws_lb_listener_rule" "main_listener_rule" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main_tg.arn
   }
-  stickiness {
-    enabled  = true
-    duration = 1
-  }
 
   condition {
     host_header {
