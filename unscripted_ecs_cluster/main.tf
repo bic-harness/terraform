@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "main_tg" {
   port          = 80
   protocol      = "HTTP"
   target_type   = "instance"
-  vpc_id        = data.aws_vpc.selected._vpc.id
+  vpc_id        = data.aws_vpc.selected_vpc.id
   stickiness {
       type = "lb_cookie"
       enabled = true
