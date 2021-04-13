@@ -6,8 +6,12 @@ output "region" {
     value = var.region
 }
 
-output "subnet" {
-    value = var.subnets
+output "vpc" {
+    value = data.selected_vpc.id
+}
+
+output "subnets" {
+    value = data.selected_subnets.ids
 }
 
 output "security_group" {
