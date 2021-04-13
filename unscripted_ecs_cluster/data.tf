@@ -12,4 +12,8 @@ data "aws_subnet_ids" "selected_subnets" {
     name   = "tag:Environment"
     values = ["${var.environment}"]
   }
+    filter {
+    name   = "tag:Type"
+    values = ["Public"]
+  }
 }
