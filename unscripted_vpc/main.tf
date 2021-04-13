@@ -23,6 +23,7 @@ module "vpc" {
 
   public_subnet_tags = {
     Environment = "${var.environment}"
+    Type        = "Public"
   }
 
   tags = {
