@@ -21,20 +21,6 @@ module "vpc" {
   enable_s3_endpoint       = false
   enable_dynamodb_endpoint = false
 
-  manage_default_security_group  = true
-  default_security_group_ingress = [
-    "protocol  = -1",
-    "self      = true",
-    "from_port = 0",
-    "to_port   = 0"
-    ]
-  default_security_group_egress  = [
-    "from_port   = 0",
-    "to_port     = 0",
-    "protocol    = '-1'",
-    "cidr_blocks = ['0.0.0.0/0']"
-    ]
-
   public_subnet_tags = {
     Environment = "${var.environment}"
     Type        = "Public"
@@ -46,5 +32,23 @@ module "vpc" {
 
   vpc_tags = {
     Name = "${var.environment}VPC"
+  }
+}
+
+resource "aws_default_security_group" "main_sg" {
+  vpc_id = module.vpc.id
+
+  ingress {
+    protocol  = -1
+    self      = true
+    from_port = 0
+    to_port   = 0
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
