@@ -23,10 +23,10 @@ module "vpc" {
 
   manage_default_security_group  = true
   default_security_group_ingress = [
-    protocol  = -1,
-    self      = true,
-    from_port = 0,
-    to_port   = 0
+    "protocol  = -1",
+    "self      = true",
+    "from_port = 0",
+    "to_port   = 0"
     ]
   default_security_group_egress  = [
     from_port   = 0,
