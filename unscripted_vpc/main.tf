@@ -36,7 +36,7 @@ module "vpc" {
 }
 
 resource "aws_default_security_group" "main_sg" {
-  vpc_id = module.vpc.id
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     protocol  = -1
