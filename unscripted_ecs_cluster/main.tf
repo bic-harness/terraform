@@ -17,7 +17,7 @@ resource "aws_lb_target_group" "main_tg" {
   name          = "${var.environment}ALB-tg"
   port          = 80
   protocol      = "HTTP"
-  target_type   = "instance"
+  target_type   = "ip"
   vpc_id        = data.aws_vpc.selected_vpc.id
   stickiness {
       type = "lb_cookie"
