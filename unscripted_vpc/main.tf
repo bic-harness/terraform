@@ -21,6 +21,8 @@ module "vpc" {
   enable_s3_endpoint       = false
   enable_dynamodb_endpoint = false
 
+  manage_default_security_group  = true
+
   public_subnet_tags = {
     Environment = "${var.environment}"
     Type        = "Public"
@@ -34,4 +36,3 @@ module "vpc" {
     Name = "${var.environment}VPC"
   }
 }
-
