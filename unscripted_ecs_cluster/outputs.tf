@@ -15,7 +15,7 @@ output "subnets" {
 }
 
 output "security_group" {
-    value = var.security_groups
+    value = data.aws_security_group.selected_security_group.id
 }
 
 output "alb_arn" {
