@@ -36,7 +36,8 @@ module "vpc" {
 }
 
 resource "aws_default_security_group" "main_sg" {
-  vpc_id = module.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
+  description = "Default Security Group for ${var.environment}"
 
   ingress {
     protocol  = -1
@@ -50,5 +51,10 @@ resource "aws_default_security_group" "main_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Environment = "${var.environment}"
+    Name        = "${var.environment}SG"
   }
 }

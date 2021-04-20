@@ -33,3 +33,13 @@ output "azs" {
   value       = module.vpc.azs
 }
 
+# SGs
+output "sg_id" {
+  description = "ID of the security group that gets provisioned with the VPC."
+  value       = aws_default_security_group.main_sg.id
+}
+
+output "sg_arn" {
+  description = "ARN of the security group that gets provisioned with the VPC."
+  value       = aws_default_security_group.main_sg.arn
+}
