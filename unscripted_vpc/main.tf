@@ -15,8 +15,8 @@ module "vpc" {
 
   enable_ipv6 = true
 
-  enable_nat_gateway = local.isProd ? true : false
-  single_nat_gateway = local.isProd ? true : false
+  enable_nat_gateway = true
+  single_nat_gateway = true
 
   enable_s3_endpoint       = false
   enable_dynamodb_endpoint = false
