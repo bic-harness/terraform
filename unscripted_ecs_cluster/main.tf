@@ -8,7 +8,6 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 
 resource "aws_autoscaling_group" "ecs-autoscaling-group" {
   name                        = "${var.environment}ECS-ASG"
-  availability_zones          = ["${split(",", var.availability_zones)}"]
   max_size                    = "2"
   min_size                    = "1"
   desired_capacity            = "1"
