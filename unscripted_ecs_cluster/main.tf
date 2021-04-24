@@ -29,7 +29,7 @@ resource "aws_launch_configuration" "ecs-launch-configuration" {
   lifecycle {
     create_before_destroy = true
   }
-  security_groups             = data.aws_security_group.selected_security_group.id
+  security_groups             = ["${data.aws_security_group.selected_security_group.id}"]
   associate_public_ip_address = "true"
   key_name                    = "bc-harness"
   user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${aws_ecs_cluster.ecs-cluster.name}' > /etc/ecs/ecs.config"
