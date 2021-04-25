@@ -90,7 +90,7 @@ resource "aws_lb_target_group_attachment" "main_attachment" {
 }
 
 resource "aws_route53_record" "dev" {
-  count   = isDev ? 1 : 0
+  count   = local.isDev ? 1 : 0
   zone_id = var.primary_zone_id
   name    = "dev.bicatana.net"
   type    = "A"
@@ -103,7 +103,7 @@ resource "aws_route53_record" "dev" {
 }
 
 resource "aws_route53_record" "staging" {
-  count   = isStaging ? 1 : 0
+  count   = local.isStaging ? 1 : 0
   zone_id = var.primary_zone_id
   name    = "staging.bicatana.net"
   type    = "A"
@@ -116,7 +116,7 @@ resource "aws_route53_record" "staging" {
 }
 
 resource "aws_route53_record" "prod" {
-  count   = isProd ? 1 : 0
+  count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
   name    = "unscripted.bicatana.net"
   type    = "A"
