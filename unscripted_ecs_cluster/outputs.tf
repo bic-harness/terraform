@@ -38,6 +38,6 @@ output "listener_arn" {
     value = aws_lb_listener.main_listener.arn
 }
 
-output "listener_arn_rule" {
-    value = aws_lb_listener_rule.main_listener_rule.arn
-}
+#output "listener_arn_rule" {
+#    value = aws_lb_listener_rule.main_listener_rule.arn
+#}
