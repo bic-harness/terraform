@@ -96,8 +96,8 @@ resource "aws_route53_record" "dev" {
   type    = "A"
 
   alias {
-    name                   = aws_elb.main_lb.dns_name
-    zone_id                = aws_elb.main_lb.zone_id
+    name                   = aws_lb.main_lb.dns_name
+    zone_id                = aws_lb.main_lb.zone_id
     evaluate_target_health = true
   }
 }
@@ -109,8 +109,8 @@ resource "aws_route53_record" "staging" {
   type    = "A"
 
   alias {
-    name                   = aws_elb.main_lb.dns_name
-    zone_id                = aws_elb.main_lb.zone_id
+    name                   = aws_lb.main_lb.dns_name
+    zone_id                = aws_lb.main_lb.zone_id
     evaluate_target_health = true
   }
 }
@@ -122,8 +122,8 @@ resource "aws_route53_record" "prod" {
   type    = "A"
 
   alias {
-    name                   = aws_elb.main_lb.dns_name
-    zone_id                = aws_elb.main_lb.zone_id
+    name                   = aws_lb.main_lb.dns_name
+    zone_id                = aws_lb.main_lb.zone_id
     evaluate_target_health = true
   }
 }
