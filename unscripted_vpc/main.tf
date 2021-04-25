@@ -1,7 +1,3 @@
-locals {
- isProd = var.environment == "Prod" ? true : false 
-}
-
 module "vpc" {
   source = "github.com/bic-harness/terraform-aws-vpc"
 

@@ -1,11 +1,10 @@
-output "clusterName" {
-    value = aws_ecs_cluster.ecs-cluster.name
-}
-
 output "region" {
     value = var.region
 }
 
+output "clusterName" {
+    value = aws_ecs_cluster.ecs-cluster.name
+}
 output "vpc" {
     value = data.aws_vpc.selected_vpc.id
 }
