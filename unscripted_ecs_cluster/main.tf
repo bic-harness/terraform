@@ -14,6 +14,12 @@ resource "aws_autoscaling_group" "ecs-autoscaling-group" {
   vpc_zone_identifier         = data.aws_subnet_ids.selected_subnets.ids
   launch_configuration        = aws_launch_configuration.ecs-launch-configuration.name
   health_check_type           = "ELB"
+
+  tag {
+    key                 = "Environment"
+    value               = "${var.environment}"
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_launch_configuration" "ecs-launch-configuration" {
@@ -88,4 +94,10 @@ resource "aws_lb_listener_rule" "main_listener_rule" {
       values = ["*.*.*"]
     }
   }
+}
+
+resource "aws_lb_target_group_attachment" "main_attachment" {
+  target_group_arn = aws_lb_target_group.main_tg.arn
+  target_id        = data.aws_instance.selected_ec2_instance.id
+  port             = 80
 }

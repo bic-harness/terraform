@@ -25,3 +25,11 @@ data "aws_security_group" "selected_security_group" {
     values = ["${var.environment}"]
   }
 }
+
+data "aws_instance" "selected_ec2_instance" {
+  depends_on = ["aws_autoscaling_group.ecs-autoscaling-group"]
+  filter {
+    name   = "tag:Environment"
+    values = ["${var.environment}"]
+  }
+}
