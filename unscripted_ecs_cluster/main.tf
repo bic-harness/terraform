@@ -1,5 +1,7 @@
 locals {
- isProd = var.environment == "Prod" ? true : false 
+ isDev     = var.environment == "Dev" ? true : false
+ isStaging = var.environment == "Staging" ? true : false
+ isProd    = var.environment == "Prod" ? true : false 
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
@@ -85,4 +87,43 @@ resource "aws_lb_target_group_attachment" "main_attachment" {
   target_group_arn = aws_lb_target_group.main_tg.arn
   target_id        = data.aws_instance.selected_ec2_instance.id
   port             = 80
+}
+
+resource "aws_route53_record" "dev" {
+  count   = isDev ? 1 : 0
+  zone_id = var.primary_zone_id
+  name    = "dev.bicatana.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_elb.main_lb.dns_name
+    zone_id                = aws_elb.main_lb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "staging" {
+  count   = isStaging ? 1 : 0
+  zone_id = var.primary_zone_id
+  name    = "staging.bicatana.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_elb.main_lb.dns_name
+    zone_id                = aws_elb.main_lb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "prod" {
+  count   = isProd ? 1 : 0
+  zone_id = var.primary_zone_id
+  name    = "unscripted.bicatana.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_elb.main_lb.dns_name
+    zone_id                = aws_elb.main_lb.zone_id
+    evaluate_target_health = true
+  }
 }
