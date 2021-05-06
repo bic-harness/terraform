@@ -5,10 +5,12 @@ locals {
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
-    name = "${var.environment}ECSCluster"
+    count = local.isProd ? 0 : 1
+    name  = "${var.environment}ECSCluster"
 }
 
 resource "aws_autoscaling_group" "ecs-autoscaling-group" {
+  count                       = local.isProd ? 0 : 1
   name                        = "${var.environment}ECS-ASG"
   max_size                    = "2"
   min_size                    = "1"
@@ -25,6 +27,7 @@ resource "aws_autoscaling_group" "ecs-autoscaling-group" {
 }
 
 resource "aws_launch_configuration" "ecs-launch-configuration" {
+  count                       = local.isProd ? 0 : 1
   name                        = "${var.environment}ECS-LC"
   image_id                    = "ami-0e4249602c03f799a"
   instance_type               = "m5d.large"
@@ -84,6 +87,7 @@ resource "aws_lb_listener" "main_listener" {
 }
 
 resource "aws_lb_target_group_attachment" "main_attachment" {
+  count            = local.isProd ? 0 : 1
   target_group_arn = aws_lb_target_group.main_tg.arn
   target_id        = data.aws_instance.selected_ec2_instance.id
   port             = 80
@@ -125,5 +129,18 @@ resource "aws_route53_record" "prod" {
     name                   = aws_lb.main_lb.dns_name
     zone_id                = aws_lb.main_lb.zone_id
     evaluate_target_health = true
+  }
+}
+
+resource "aws_instance" "docker_host" {
+  count                  = local.isDev ? 1 : 0
+  ami                    = "ami-0a0cb6c7bcb2e4c51"
+  instance_type          = "t2.micro"
+  key_name               = "bc-harness"
+  vpc_security_group_ids = ["${data.aws_security_group.selected_security_group.id}"]
+  
+  tags = {
+    Name        = "SampleHost"
+    Environment = "Dev"
   }
 }
