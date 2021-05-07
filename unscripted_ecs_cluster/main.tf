@@ -94,7 +94,7 @@ resource "aws_route53_record" "staging" {
 resource "aws_route53_record" "prod" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
-  name    = "prod.bicatana.net"
+  name    = "unscripted.bicatana.net"
   type    = "A"
 
   alias {
@@ -103,7 +103,7 @@ resource "aws_route53_record" "prod" {
     evaluate_target_health = true
   }
 }
-
+/*
 resource "aws_instance" "sample_server" {
   count                  = local.isProd ? 1 : 0
   ami                    = "ami-0a0cb6c7bcb2e4c51"
@@ -115,3 +115,4 @@ resource "aws_instance" "sample_server" {
     Name        = "Sample Server"
   }
 }
+*/
