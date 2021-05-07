@@ -1,9 +1,3 @@
-locals {
- isDev     = var.environment == "Dev" ? true : false
- isStaging = var.environment == "Staging" ? true : false
- isProd    = var.environment == "Prod" ? true : false 
-}
-
 module "vpc" {
   source = "github.com/bic-harness/terraform-aws-vpc"
 

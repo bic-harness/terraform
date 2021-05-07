@@ -127,3 +127,15 @@ resource "aws_route53_record" "prod" {
     evaluate_target_health = true
   }
 }
+
+resource "aws_instance" "ec2_instance" {
+  count                  = local.isDev ? 1 : 0
+  ami                    = "ami-0a0cb6c7bcb2e4c51"
+  instance_type          = "t2.micro"
+  key_name               = "bc-harness"
+  vpc_security_group_ids = ["sg-01c4818eac2729203"]
+  
+  tags = {
+    Name        = "SampleHost"
+  }
+}
