@@ -71,8 +71,6 @@ resource "aws_lb_listener" "main_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main_tg.arn
     }
-
-  }
 }
 
 resource "aws_lb_target_group_attachment" "main_attachment" {
