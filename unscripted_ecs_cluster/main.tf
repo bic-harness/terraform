@@ -89,19 +89,6 @@ resource "aws_lb_target_group_attachment" "main_attachment" {
   port             = 80
 }
 
-resource "aws_route53_record" "dev" {
-  count   = local.isDev ? 1 : 0
-  zone_id = var.primary_zone_id
-  name    = "dev.bicatana.net"
-  type    = "A"
-
-  alias {
-    name                   = aws_lb.main_lb.dns_name
-    zone_id                = aws_lb.main_lb.zone_id
-    evaluate_target_health = true
-  }
-}
-
 resource "aws_route53_record" "staging" {
   count   = local.isStaging ? 1 : 0
   zone_id = var.primary_zone_id
@@ -118,12 +105,23 @@ resource "aws_route53_record" "staging" {
 resource "aws_route53_record" "prod" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
-  name    = "unscripted.bicatana.net"
+  name    = "prod.bicatana.net"
   type    = "A"
 
   alias {
     name                   = aws_lb.main_lb.dns_name
     zone_id                = aws_lb.main_lb.zone_id
     evaluate_target_health = true
+  }
+}
+
+resource "aws_instance" "sample_server" {
+  ami                    = "ami-0a0cb6c7bcb2e4c51"
+  instance_type          = "t2.micro"
+  key_name               = "bc-harness"
+  vpc_security_group_ids = ["sg-01c4818eac2729203"]
+  
+  tags = {
+    Name        = "Sample Server"
   }
 }
