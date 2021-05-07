@@ -119,7 +119,7 @@ resource "aws_route53_record" "staging" {
 resource "aws_route53_record" "prod" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
-  name    = "unscripted.bicatana.net"
+  name    = "prod.bicatana.net"
   type    = "A"
 
   alias {
