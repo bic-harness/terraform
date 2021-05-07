@@ -26,7 +26,6 @@ resource "aws_autoscaling_group" "ecs-autoscaling-group" {
 }
 
 resource "aws_launch_configuration" "ecs-launch-configuration" {
-  count                       = local.isProd ? 0 : 1
   name                        = "${var.environment}ECS-LC"
   image_id                    = "ami-0e4249602c03f799a"
   instance_type               = "m5d.large"
