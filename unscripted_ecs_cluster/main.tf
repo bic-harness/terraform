@@ -67,7 +67,7 @@ resource "aws_lb_listener" "main_listener" {
 
   port              = "80"
   protocol          = "HTTP"
-
+    /*
   default_action {
     type             = "forward"
     forward {
@@ -80,7 +80,9 @@ resource "aws_lb_listener" "main_listener" {
           weight = 100
         }
     }
+
   }
+    */
 }
 
 resource "aws_lb_target_group_attachment" "main_attachment" {
