@@ -67,22 +67,12 @@ resource "aws_lb_listener" "main_listener" {
 
   port              = "80"
   protocol          = "HTTP"
-    /*
   default_action {
     type             = "forward"
-    forward {
-        stickiness {
-            enabled = true
-            duration = 1
-        }
-        target_group {
-          arn = aws_lb_target_group.main_tg.arn
-          weight = 100
-        }
+    target_group_arn = aws_lb_target_group.main_tg.arn
     }
 
   }
-    */
 }
 
 resource "aws_lb_target_group_attachment" "main_attachment" {
