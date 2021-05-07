@@ -5,7 +5,6 @@ locals {
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
-    count = local.isProd ? 0 : 1
     name  = "${var.environment}ECSCluster"
 }
 
