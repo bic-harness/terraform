@@ -9,7 +9,6 @@ resource "aws_ecs_cluster" "ecs-cluster" {
 }
 
 resource "aws_autoscaling_group" "ecs-autoscaling-group" {
-  count                       = local.isProd ? 0 : 1
   name                        = "${var.environment}ECS-ASG"
   max_size                    = "2"
   min_size                    = "1"
