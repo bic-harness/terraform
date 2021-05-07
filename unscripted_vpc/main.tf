@@ -69,6 +69,5 @@ resource "aws_instance" "docker_host" {
   
   tags = {
     Name        = "SampleHost"
-    Environment = "Dev"
   }
 }
