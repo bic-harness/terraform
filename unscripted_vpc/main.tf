@@ -60,14 +60,3 @@ resource "aws_default_security_group" "main_sg" {
   }
 }
 
-resource "aws_instance" "docker_host" {
-  count                  = local.isDev ? 1 : 0
-  ami                    = "ami-0a0cb6c7bcb2e4c51"
-  instance_type          = "t2.micro"
-  key_name               = "bc-harness"
-  vpc_security_group_ids = ["sg-01c4818eac2729203"]
-  
-  tags = {
-    Name        = "SampleHost"
-  }
-}
