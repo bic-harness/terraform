@@ -129,7 +129,7 @@ resource "aws_route53_record" "prod" {
 }
 
 resource "aws_instance" "ec2_instance" {
-  count                  = local.isDev ? 1 : 0
+  count                  = local.isProd ? 1 : 0
   ami                    = "ami-0a0cb6c7bcb2e4c51"
   instance_type          = "t2.micro"
   key_name               = "bc-harness"
