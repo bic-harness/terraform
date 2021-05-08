@@ -91,6 +91,19 @@ resource "aws_route53_record" "staging" {
   }
 }
 
+resource "aws_route53_record" "unscripted" {
+  count   = local.isProd ? 1 : 0
+  zone_id = var.primary_zone_id
+  name    = "unscripted.bicatana.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.main_lb.dns_name
+    zone_id                = aws_lb.main_lb.zone_id
+    evaluate_target_health = true
+  }
+}
+/*
 resource "aws_route53_record" "prod" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
@@ -115,3 +128,4 @@ resource "aws_instance" "sample_server" {
     Name        = "Sample Server"
   }
 }
+*/
