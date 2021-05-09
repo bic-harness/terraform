@@ -90,7 +90,7 @@ resource "aws_route53_record" "staging" {
     evaluate_target_health = true
   }
 }
-/*
+
 resource "aws_route53_record" "unscripted" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
@@ -103,8 +103,8 @@ resource "aws_route53_record" "unscripted" {
     evaluate_target_health = true
   }
 }
-*/
 
+/*
 resource "aws_route53_record" "prod" {
   count   = local.isProd ? 1 : 0
   zone_id = var.primary_zone_id
@@ -129,3 +129,4 @@ resource "aws_instance" "sample_server" {
     Name        = "Sample Server"
   }
 }
+*/
