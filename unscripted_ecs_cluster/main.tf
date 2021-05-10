@@ -77,11 +77,24 @@ resource "aws_lb_target_group_attachment" "main_attachment" {
   target_id        = data.aws_instance.selected_ec2_instance.id
   port             = 80
 }
-
+/*
 resource "aws_route53_record" "staging" {
   count   = local.isStaging ? 1 : 0
   zone_id = var.primary_zone_id
   name    = "staging.bicatana.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.main_lb.dns_name
+    zone_id                = aws_lb.main_lb.zone_id
+    evaluate_target_health = true
+  }
+}
+*/
+resource "aws_route53_record" "unscript" {
+  count   = local.isStaging ? 1 : 0
+  zone_id = var.primary_zone_id
+  name    = "unscript.bicatana.net"
   type    = "A"
 
   alias {
