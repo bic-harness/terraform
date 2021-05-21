@@ -43,3 +43,8 @@ output "sg_arn" {
   description = "ARN of the security group that gets provisioned with the VPC."
   value       = aws_default_security_group.main_sg.arn
 }
+
+# Region
+output "region" {
+    value = var.region
+}
