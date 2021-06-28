@@ -1,6 +1,7 @@
 locals {
- isStaging = var.environment == "Staging" ? true : false
- isProd    = var.environment == "Prod" ? true : false 
+ isStaging    = var.environment == "Staging" ? true : false
+ isProd       = var.environment == "Prod" ? true : false 
+ provisionEC2 = var.provisionEC2 == "yes" ? true : false
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
@@ -103,9 +104,9 @@ resource "aws_route53_record" "unscripted" {
     evaluate_target_health = true
   }
 }
-/*
+
 resource "aws_instance" "sample_server" {
-  count                  = local.isProd ? 1 : 0
+  count                  = local.provisionEC2 ? 2 : 1
   ami                    = "ami-0a0cb6c7bcb2e4c51"
   instance_type          = "t2.micro"
   key_name               = "bc-harness"
@@ -115,4 +116,4 @@ resource "aws_instance" "sample_server" {
     Name        = "Sample Server"
   }
 }
-*/
+
